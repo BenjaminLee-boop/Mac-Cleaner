@@ -2,8 +2,25 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"os"
 )
+
+func main() {
+	cleanTrash()
+}
+
+func cleanTrash() (status string, err error) {
+	x, err := readFolder("/Volumes")
+	if err != nil {
+		return "", err
+	}
+	for _, dirs := range x {
+		fmt.Println("💿 - Found Volume: " + dirs)
+	}
+
+	return "", err
+}
 
 func readFolder(dir string) (fileArray []string, err error) {
 
